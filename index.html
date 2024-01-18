@@ -2,18 +2,66 @@
 <html lang="sv">
 
 <head>
-    <meta lang="utf-8">
+    <meta charset="utf-8">
     <title>Title here</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
 </head>
 
 <body>
-    <h1>Header1</h1>
-    <p>Paragraph</p>
-    <ul>
-        <li>First</li>
-        <li>Second</li>
-        <li>Third</li>
-    </ul>
+    <div class="content">
+        <header>
+            <h1>H1</h1>
+            <ul class="nav">
+                <li class="nav"><a href="index.html">Home</a></li>
+                <li class="nav"><a href="object.html">Objects</a></li>
+                <li class="nav"><a href="contact.html">Contact</a></li>
+            </ul>
+        </header>
+
+        <aside>
+            Aside
+        </aside>
+
+        <main>
+            <table>
+                <caption>Caption</caption>
+                <thead>
+                    <tr>
+                        <th>TH1</th>
+                        <th>TH2</th>
+                        <th>TH3</th>
+                        <th>TH4</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>TD1_1</td>
+                        <td colspan="2">TD2_1</td>
+                        <td>TD4_1</td>
+                    </tr>
+                    <tr>
+                        <td>TD1_2</td>
+                        <td>TD2_2</td>
+                        <td rowspan="2">TD3_2</td>
+                        <td>TD4_2</td>
+                    </tr>
+                    <tr>
+                        <td>TD1_3</td>
+                        <td>TD2_3</td>
+                        <td>TD4_3</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <td colspan="4">That's it</td>
+                </tfoot>
+            </table>
+        </main>
+
+        <footer>
+            <div>Footer</div>
+        </footer>
+    </div>
 </body>
 
 </html>
