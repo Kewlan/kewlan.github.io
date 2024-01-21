@@ -17,7 +17,7 @@ div.content {
 
 .main-aside {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
 }
 
 ul.nav {
@@ -38,4 +38,19 @@ li.nav a {
 
 li.nav a:hover {
     background-color: rgb(100, 100, 100);
+}
+
+footer {
+    display: flex;
+}
+
+footer a {
+    display: flex;
+    align-items: center;
+    margin: 5px;
+}
+
+footer img {
+    height: 30px;
+    border-radius: 10px;
 }
