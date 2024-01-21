@@ -1,0 +1,41 @@
+body {
+    background-color: #DCFFB7;
+}
+
+header div {
+    display: flex;
+    align-items: center;
+}
+
+div.content {
+    max-width: 980px;
+    margin: auto;
+    overflow: hidden;
+    background-color: #FFEAA7;
+    border-radius: 10px;
+}
+
+.main-aside {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+ul.nav {
+    list-style-type: none;
+    background-color: rgb(50, 50, 50);
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+}
+
+li.nav a {
+    float: left;
+    display: block;
+    padding: 20px;
+    text-decoration: none;
+    color: white;
+}
+
+li.nav a:hover {
+    background-color: rgb(100, 100, 100);
+}
