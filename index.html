@@ -9,18 +9,30 @@
 </head>
 
 <body>
-    <div class="content">
+    <div>
         <header>
             <div>
                 <a href="index.html"><img src="img/logo.png" alt="Logo of generic round red fruit." height="100"></a>
                 <h1>Fruit Sellers</h1>
             </div>
-            <!-- Horizontal list from: https://www.w3schools.com/html/tryit.asp?filename=tryhtml_lists_menu -->
-            <ul class="nav">
-                <li class="nav"><a href="index.html">Home</a></li>
-                <li class="nav"><a href="object.html">Objects</a></li>
-                <li class="nav"><a href="contact.html">Contact</a></li>
-            </ul>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a>Objects</a>
+                        <ul>
+                            <li><a>Apples</a>
+                                <ul>
+                                    <li><a href="object.html">Red Apple</a></li>
+                                    <li><a>Green Apple</a></li>
+                                </ul>
+                            </li>
+                            <li><a>Pear</a></li>
+                            <li><a>Orange</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
         </header>
 
         <div class="main-aside">

@@ -1,3 +1,11 @@
+/*======
+| BASE |
+======*/
+
+* {
+    box-sizing: border-box;
+}
+
 body {
     background-color: #DCFFB7;
 }
@@ -7,7 +15,11 @@ img {
     max-height: 100%;
 }
 
-header div {
+/*======
+| LOGO |
+======*/
+
+header>div {
     display: flex;
     align-items: center;
 }
@@ -16,27 +28,74 @@ header h1 {
     font-family: 'Courier New', Courier, monospace;
 }
 
-ul.nav {
-    list-style-type: none;
-    background-color: rgb(50, 50, 50);
-    padding: 0;
+/*====================
+| TOP NAVIGATION BAR |
+====================*/
+
+header>nav ul {
+    background-color: #FFBB64;
+    display: flex;
     margin: 0;
-    overflow: hidden;
+    padding: 0;
+    list-style-type: none;
 }
 
-li.nav a {
-    float: left;
+header>nav li {
+    position: relative;
+    min-width: 120px;
+    text-align: center;
+}
+
+header>nav ul>li:hover {
+    background-color: #FF6868;
+}
+
+header>nav a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+header>nav>ul>li>a {
     display: block;
     padding: 20px;
-    text-decoration: none;
-    color: white;
 }
 
-li.nav a:hover {
-    background-color: rgb(100, 100, 100);
+header>nav>ul ul {
+    position: absolute;
+    display: none;
+    flex-flow: column;
 }
 
-div.content {
+header>nav>ul>li:hover>ul {
+    display: flex;
+}
+
+header>nav>ul ul>li>a {
+    margin: 0;
+    padding: 0;
+}
+
+header>nav>ul ul>li>a {
+    display: block;
+    padding: 10px;
+}
+
+header>nav>ul>li>ul>li>ul {
+    left: 100%;
+    top: 0%;
+    flex-flow: row;
+}
+
+header>nav>ul>li>ul>li:hover>ul {
+    display: flex;
+}
+
+/*==============
+| MAIN CONTENT |
+==============*/
+
+body>div {
     max-width: 980px;
     margin: auto;
     overflow: hidden;
@@ -57,9 +116,17 @@ aside p {
     color: #FF6868;
 }
 
+/*============
+| QUICK JUMP |
+============*/
+
 .quick-jump li:hover {
     background-color: #FF6868;
 }
+
+/*=============
+| FRUIT TABLE |
+=============*/
 
 table th,
 table td {
@@ -81,6 +148,38 @@ table td:hover {
 td.fruit-icon a {
     text-decoration: none;
 }
+
+/*==============
+| CONTACT FORM |
+==============*/
+
+form {
+    margin: 1rem;
+    width: 400px;
+    padding: 1rem;
+    border-radius: 1rem;
+    background-color: #FFBB64;
+    box-shadow: 0 0 10px 2px #FF6868;
+    display: flex;
+    flex-flow: column;
+}
+
+form>* {
+    margin-bottom: 1rem;
+}
+
+form>*:last-child {
+    margin-bottom: 0;
+}
+
+form textarea {
+    width: 100%;
+    resize: vertical;
+}
+
+/*=============
+| INFO FOOTER |
+=============*/
 
 footer {
     display: flex;

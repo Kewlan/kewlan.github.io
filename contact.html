@@ -15,16 +15,75 @@
                 <a href="index.html"><img src="img/logo.png" alt="Logo of generic round red fruit." height="100"></a>
                 <h1>Fruit Sellers</h1>
             </div>
-            <!-- Horizontal list from: https://www.w3schools.com/html/tryit.asp?filename=tryhtml_lists_menu -->
-            <ul class="nav">
-                <li class="nav"><a href="index.html">Home</a></li>
-                <li class="nav"><a href="object.html">Objects</a></li>
-                <li class="nav"><a href="contact.html">Contact</a></li>
-            </ul>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a>Objects</a>
+                        <ul>
+                            <li><a>Apples</a>
+                                <ul>
+                                    <li><a href="object.html">Red Apple</a></li>
+                                    <li><a>Green Apple</a></li>
+                                </ul>
+                            </li>
+                            <li><a>Pear</a></li>
+                            <li><a>Orange</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
         </header>
 
         <main>
             <h2>CONTACT</h2>
+
+            <form>
+                <div>
+                    <label for="your-name">Enter your name:</label>
+                    <input type="text" placeholder="Your Name">
+                </div>
+                <div>
+                    <label for="fruit-select">Fruit type:</label>
+                    <select id="fruit-select">
+                        <option value="">--- Select a fruit ---</option>
+                        <option value="red-apple">Red Apple</option>
+                        <option value="green-apple">Green Apple</option>
+                        <option value="pear">Pear</option>
+                        <option value="orange">Orange</option>
+                    </select>
+                </div>
+                <fieldset>
+                    <legend>Reason for contact</legend>
+                    <div>
+                        <input type="radio" name="contact-reason" id="failed-delivery" value="failed-delivery">
+                        <label for="failed-delivery">Failed delivery</label>
+                    </div>
+                    <div>
+                        <input type="radio" name="contact-reason" id="bad-product" value="bad-product">
+                        <label for="bad-product">Bad product</label>
+                    </div>
+                    <div>
+                        <input type="radio" name="contact-reason" id="return" value="return">
+                        <label for="return">Return</label>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend>Unknown Checkboxes</legend>
+                    <div>
+                        <input type="checkbox" id="unknown-1">
+                        <label for="unknown-1">Unknown 1</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="unknown-2">
+                        <label for="unknown-2">Unknown 2</label>
+                    </div>
+                </fieldset>
+                <div>
+                    <textarea rows="6"></textarea>
+                </div>
+            </form>
+
             <p>Those who worked on this website are: </p>
             <ul>
                 <li><a href="mailto:colielfm100@student.kau.se">Colin Elfman</a></li>
