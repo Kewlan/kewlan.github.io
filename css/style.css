@@ -1,18 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Protest+Riot&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+/*===========
+| VARIABLES |
+===========*/
+
+:root {
+    --palette-green: #DCFFB7;
+    --palette-red: #FF6868;
+    --palette-orange: #FFBB64;
+    --palette-yellow: #FFEAA7;
+
+    --tiny-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.5);
+}
+
 /*======
 | BASE |
 ======*/
 
 * {
+    font-family: Roboto, monospace;
     box-sizing: border-box;
 }
 
 body {
-    background-color: #DCFFB7;
+    background-color: var(--palette-green);
 }
 
 img {
     max-width: 100%;
     max-height: 100%;
+}
+
+h2 {
+    margin-left: 1rem;
 }
 
 /*======
@@ -22,10 +42,18 @@ img {
 header>div {
     display: flex;
     align-items: center;
+    flex-direction: row;
+}
+
+header>div>a {
+    display: flex;
+    align-items: center;
+    color: black;
+    text-decoration: none;
 }
 
 header h1 {
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Protest Riot', monospace;
 }
 
 /*====================
@@ -33,7 +61,7 @@ header h1 {
 ====================*/
 
 header>nav ul {
-    background-color: #FFBB64;
+    background-color: var(--palette-orange);
     display: flex;
     margin: 0;
     padding: 0;
@@ -47,7 +75,7 @@ header>nav li {
 }
 
 header>nav ul>li:hover {
-    background-color: #FF6868;
+    background-color: var(--palette-red);
 }
 
 header>nav a {
@@ -69,6 +97,7 @@ header>nav>ul ul {
 
 header>nav>ul>li:hover>ul {
     display: flex;
+    box-shadow: var(--tiny-shadow);
 }
 
 header>nav>ul ul>li>a {
@@ -89,6 +118,7 @@ header>nav>ul>li>ul>li>ul {
 
 header>nav>ul>li>ul>li:hover>ul {
     display: flex;
+    box-shadow: var(--tiny-shadow);
 }
 
 /*==============
@@ -98,8 +128,7 @@ header>nav>ul>li>ul>li:hover>ul {
 body>div {
     max-width: 980px;
     margin: auto;
-    overflow: hidden;
-    background-color: #FFEAA7;
+    background-color: var(--palette-yellow);
     border-radius: 10px;
 }
 
@@ -113,7 +142,7 @@ aside {
 }
 
 aside p {
-    color: #FF6868;
+    color: var(--palette-red);
 }
 
 /*============
@@ -121,7 +150,7 @@ aside p {
 ============*/
 
 .quick-jump li:hover {
-    background-color: #FF6868;
+    background-color: var(--palette-red);
 }
 
 /*=============
@@ -131,12 +160,12 @@ aside p {
 table th,
 table td {
     border: 1px solid black;
-    background-color: #FFBB64;
+    background-color: var(--palette-orange);
 }
 
 table th:hover,
 table td:hover {
-    border-color: #FF6868;
+    border-color: var(--palette-red);
 }
 
 .fruit-icon {
@@ -158,10 +187,10 @@ form {
     width: 400px;
     padding: 1rem;
     border-radius: 1rem;
-    background-color: #FFBB64;
-    box-shadow: 0 0 10px 2px #FF6868;
+    background-color: var(--palette-orange);
     display: flex;
-    flex-flow: column;
+    flex-direction: column;
+    box-shadow: var(--tiny-shadow);
 }
 
 form>* {
@@ -172,9 +201,65 @@ form>*:last-child {
     margin-bottom: 0;
 }
 
+form>div {
+    display: flex;
+    flex-direction: column;
+}
+
+form input[type="text"],
+form select,
+form textarea {
+    padding: 0.5rem;
+    outline: none;
+    border: none;
+    transition: box-shadow 0.2s;
+}
+
+form input[type="text"]:focus,
+form select:focus,
+form textarea:focus {
+    box-shadow: 0 0 1px 2px var(--palette-red);
+}
+
+form fieldset>legend {
+    background-color: var(--palette-yellow);
+    box-shadow: var(--tiny-shadow);
+}
+
+form fieldset {
+    background-color: var(--palette-yellow);
+    border: none;
+    box-shadow: var(--tiny-shadow);
+}
+
 form textarea {
     width: 100%;
     resize: vertical;
+    min-height: 3.5rem;
+}
+
+form>div:has(button) {
+    flex-direction: row;
+}
+
+form button {
+    width: 50%;
+    margin: 0 0.5rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    background-color: var(--palette-red);
+    border-radius: 1000px;
+    font-weight: bold;
+    font-size: large;
+    cursor: pointer;
+}
+
+form button:hover {
+    outline: 1px solid black;
+}
+
+form button:active {
+    background-color: var(--palette-green);
 }
 
 /*=============

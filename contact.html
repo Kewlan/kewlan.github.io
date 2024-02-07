@@ -5,15 +5,19 @@
     <meta charset="utf-8">
     <title>Fruit Sellers</title>
     <link rel="stylesheet" href="css/style.css">
+    <!-- Image made by Colin Elfman -->
     <link rel="icon" href="img/logo.png">
 </head>
 
 <body>
-    <div class="content">
+    <div>
         <header>
             <div>
-                <a href="index.html"><img src="img/logo.png" alt="Logo of generic round red fruit." height="100"></a>
-                <h1>Fruit Sellers</h1>
+                <a href="index.html">
+                    <!-- Image made by Colin Elfman -->
+                    <img src="img/logo.png" alt="Logo of generic round red fruit." height="100">
+                    <h1>Fruit Sellers</h1>
+                </a>
             </div>
             <nav>
                 <ul>
@@ -40,12 +44,12 @@
 
             <form>
                 <div>
-                    <label for="your-name">Enter your name:</label>
-                    <input type="text" placeholder="Your Name">
+                    <label for="your-name">Your name:</label>
+                    <input type="text" placeholder="John Doe" required>
                 </div>
                 <div>
                     <label for="fruit-select">Fruit type:</label>
-                    <select id="fruit-select">
+                    <select id="fruit-select" required>
                         <option value="">--- Select a fruit ---</option>
                         <option value="red-apple">Red Apple</option>
                         <option value="green-apple">Green Apple</option>
@@ -56,15 +60,15 @@
                 <fieldset>
                     <legend>Reason for contact</legend>
                     <div>
-                        <input type="radio" name="contact-reason" id="failed-delivery" value="failed-delivery">
+                        <input type="radio" name="contact-reason" id="failed-delivery" value="failed-delivery" required>
                         <label for="failed-delivery">Failed delivery</label>
                     </div>
                     <div>
-                        <input type="radio" name="contact-reason" id="bad-product" value="bad-product">
+                        <input type="radio" name="contact-reason" id="bad-product" value="bad-product" required>
                         <label for="bad-product">Bad product</label>
                     </div>
                     <div>
-                        <input type="radio" name="contact-reason" id="return" value="return">
+                        <input type="radio" name="contact-reason" id="return" value="return" required>
                         <label for="return">Return</label>
                     </div>
                 </fieldset>
@@ -80,7 +84,12 @@
                     </div>
                 </fieldset>
                 <div>
-                    <textarea rows="6"></textarea>
+                    <label for="explanation">Reason:</label>
+                    <textarea id="explanation" rows="6"></textarea>
+                </div>
+                <div>
+                    <button type="reset">Reset</button>
+                    <button type="submit">Submit</button>
                 </div>
             </form>
 
@@ -92,10 +101,12 @@
 
         <footer>
             <a href="https://github.com/Kewlan/kewlan.github.io" target="_blank">
+                <!-- GitHub icon downloaded and permitted from https://github.com/logos -->
                 <img src="img/github-mark.svg" alt="GitHub Logo">
                 Source
             </a>
             <a href="https://colorhunt.co/palette/dcffb7ff6868ffbb64ffeaa7" target="_blank">
+                <!-- Image made by Colin Elfman -->
                 <img src="img/star.png" alt="Would have been Color Hunt Logo if explicitly permitted.">
                 Color Palette
             </a>
