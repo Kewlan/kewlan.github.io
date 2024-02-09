@@ -20,10 +20,11 @@
                 </a>
             </div>
             <nav>
-                <ul>
+                <!-- Design inspired by https://www.w3schools.com/html/tryit.asp?filename=tryhtml_lists_menu -->
+                <ul id="menu">
                     <li><a href="index.html">Home</a></li>
                     <li><a>Objects</a>
-                        <ul>
+                        <ul class="dropdown">
                             <li><a>Apples</a>
                                 <ul>
                                     <li><a href="object.html">Red Apple</a></li>
@@ -45,7 +46,7 @@
             <form>
                 <div>
                     <label for="your-name">Your name:</label>
-                    <input type="text" placeholder="John Doe" required>
+                    <input type="text" id="your-name" placeholder="John Doe" required>
                 </div>
                 <div>
                     <label for="fruit-select">Fruit type:</label>
@@ -84,8 +85,8 @@
                     </div>
                 </fieldset>
                 <div>
-                    <label for="explanation">Reason:</label>
-                    <textarea id="explanation" rows="6"></textarea>
+                    <label for="additional-info">Additional info:</label>
+                    <textarea id="additional-info" rows="6"></textarea>
                 </div>
                 <div>
                     <button type="reset">Reset</button>

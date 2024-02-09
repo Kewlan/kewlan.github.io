@@ -60,6 +60,7 @@ header h1 {
 | TOP NAVIGATION BAR |
 ====================*/
 
+#menu,
 header>nav ul {
     background-color: var(--palette-orange);
     display: flex;
@@ -89,6 +90,7 @@ header>nav>ul>li>a {
     padding: 20px;
 }
 
+.dropdown,
 header>nav>ul ul {
     position: absolute;
     display: none;
@@ -238,7 +240,7 @@ form textarea {
     min-height: 3.5rem;
 }
 
-form>div:has(button) {
+form>div:last-child {
     flex-direction: row;
 }
 
@@ -278,5 +280,4 @@ footer a {
 
 footer img {
     height: 30px;
-    border-radius: 10px;
 }
