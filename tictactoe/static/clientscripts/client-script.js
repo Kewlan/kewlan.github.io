@@ -50,7 +50,7 @@ socket.on('newGame', function (data) {
    */
 socket.on('yourMove', function (data) {
     //Kolla om motståndares bricka skall ritas ut
-    if(data != null) {
+    if(data.cellId != null) {
 
         console.log('socket.on yourMove', data);
         //Rita färg

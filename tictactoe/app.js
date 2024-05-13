@@ -8,12 +8,14 @@ const { JSDOM } = jsDOM;
 const fs = require('fs');
 const globalObject = require('./servermodules/game-modul.js');
 const { type } = require('os');
+const http = require('http').createServer(app);
+const io = require('socket.io')(http);
 
 app.use("/public", express.static(__dirname + '/static'));
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-app.listen(3000, function () {
+http.listen(3000, function () {
     console.log("listen");
 });
 
@@ -160,3 +162,87 @@ function h_Minutes(minutes) {
 function h_Hours(hours) {
     return hours * h_Minutes(60);
 }
+
+io.on("connection", function (socket) {
+    console.log("User connected");
+
+    let cookies = globalObject.parseCookies(socket.handshake.headers.cookie);
+
+    if (cookies.nickName !== undefined && cookies.color !== undefined) {
+        if (cookies.nickName == globalObject.playerOneNick) {
+            console.log("Player 1 connected");
+            globalObject.playerOneSocketId = socket.id;
+        }
+        else if (cookies.nickName == globalObject.playerTwoNick) {
+            console.log("Player 2 connected");
+            globalObject.playerTwoSocketId = socket.id;
+            globalObject.resetGameArea();
+
+            io.to(globalObject.playerOneSocketId).emit("newGame", {
+                opponentNick: globalObject.playerTwoNick,
+                opponentColor: globalObject.playerTwoColor,
+                myColor: globalObject.playerOneColor,
+            });
+
+            io.to(globalObject.playerTwoSocketId).emit("newGame", {
+                opponentNick: globalObject.playerOneNick,
+                opponentColor: globalObject.playerOneColor,
+                myColor: globalObject.playerTwoColor,
+            });
+
+            io.to(globalObject.playerOneSocketId).emit("yourMove", {
+                cellId: null,
+            });
+
+            globalObject.currentPlayer = 1;
+        }
+        else {
+            console.log("Redan två spelare anslutna!");
+        }
+    } else {
+        console.log("Kakorna saknas!")
+    }
+
+    console.log(globalObject);
+
+    socket.on("newMove", function (data) {
+        console.log("New move received", data);
+
+        globalObject.gameArea[data.cellId] = globalObject.currentPlayer;
+
+        if (socket.id == globalObject.playerOneSocketId) {
+
+            globalObject.currentPlayer = 2;
+
+            io.to(globalObject.playerTwoSocketId).emit("yourMove", {
+                cellId: data.cellId,
+            });
+
+        } else if (socket.id == globalObject.playerTwoSocketId) {
+
+            globalObject.currentPlayer = 1;
+
+            io.to(globalObject.playerOneSocketId).emit("yourMove", {
+                cellId: data.cellId,
+            });
+        }
+
+        const result = globalObject.checkForWinner();
+
+        // Game ended
+        if (result != 0) {
+            let message = "Missing message!";
+            if (result == 1) {
+                message = globalObject.playerOneNick + " vann!";
+            } else if (result == 2) {
+                message = globalObject.playerTwoNick + " vann!";
+            } if (result == 3) {
+                message = "Spelet blev oavgjort!";
+            }
+            io.emit("gameover", message);
+            return;
+        }
+
+    });
+
+});
