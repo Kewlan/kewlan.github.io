@@ -87,19 +87,20 @@ const HTML_Handler = new class {
                 buttonRow.classList.add("row", "m-0", "mt-2");
                 {
                     let minusButton = document.createElement("button");
-                    minusButton.classList.add("col-4", "fs-5", "btn", "btn-danger", "border-0", "rounded-0");
+                    minusButton.classList.add("col-4", "fs-5", "fw-bold", "btn", "btn-danger", "border-0", "rounded-0");
                     minusButton.appendChild(document.createTextNode("-"));
                     buttonRow.appendChild(minusButton);
 
                     /** @type {HTMLInputElement} */
                     let amountInput = document.createElement("input");
-                    amountInput.classList.add("col-4", "fs-5", "border-0", "border-top");
+                    amountInput.classList.add("col-4", "border-0", "border-top", "text-center");
                     amountInput.setAttribute("type", "number");
+                    amountInput.setAttribute("value", "0");
                     amountInput.min = 0;
                     buttonRow.appendChild(amountInput);
 
                     let plusButton = document.createElement("button");
-                    plusButton.classList.add("col-4", "fs-5", "btn", "btn-success", "border-0", "rounded-0");
+                    plusButton.classList.add("col-4", "fs-5", "fw-bold", "btn", "btn-success", "border-0", "rounded-0");
                     plusButton.appendChild(document.createTextNode("+"));
                     buttonRow.appendChild(plusButton);
                 }
