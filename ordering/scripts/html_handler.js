@@ -3,35 +3,54 @@
 const HTML_Handler = new class {
 
     /** @type {HTMLDivElement} */
-    #menu_list;
+    #ref_menu_list;
+    get ref_menu_list() { return this.#ref_menu_list; }
+    /** @type {HTMLSpanElement} */
+    #ref_total_items;
+    get ref_total_items() { return this.#ref_total_items; }
+    /** @type {HTMLInputElement} */
+    #ref_filter_input;
+    get ref_filter_input() { return this.#ref_filter_input; }
+
 
     init() {
         console.log("HTML Handler init");
 
         // Get references
-        this.#menu_list = document.getElementById("menu-list");
-        console.log(this.#menu_list);
+        this.#ref_menu_list = document.getElementById("menu-list");
+        this.#ref_total_items = document.getElementById("total-items");
+        this.#ref_filter_input = document.getElementById("filter-input");
 
         // Fill menu UL element
         this.#fill_menu();
+
+        // Filter
+        this.#ref_filter_input.addEventListener("input", () => {
+            for (let card of HTML_Handler.ref_menu_list.childNodes) {
+                if (card.nodeType != Node.ELEMENT_NODE) {
+                    continue;
+                }
+                card.classList.toggle("d-none", card.querySelector("div>h5").textContent.toLowerCase().indexOf(this.#ref_filter_input.value.toLowerCase()) < 0);
+            }
+        });
     }
 
     #fill_menu() {
         for (let menu_item of menu.pizza_class_1) {
             // console.log(menu_item);
-            this.#menu_list.appendChild(this.#create_menu_card(menu_item));
+            this.#ref_menu_list.appendChild(this.#create_menu_card(menu_item));
         }
         for (let menu_item of menu.pizza_class_2) {
-            this.#menu_list.appendChild(this.#create_menu_card(menu_item));
+            this.#ref_menu_list.appendChild(this.#create_menu_card(menu_item));
         }
         for (let menu_item of menu.pizza_class_3) {
-            this.#menu_list.appendChild(this.#create_menu_card(menu_item));
+            this.#ref_menu_list.appendChild(this.#create_menu_card(menu_item));
         }
         for (let menu_item of menu.sauces) {
-            this.#menu_list.appendChild(this.#create_menu_card(menu_item));
+            this.#ref_menu_list.appendChild(this.#create_menu_card(menu_item));
         }
         for (let menu_item of menu.drinks) {
-            this.#menu_list.appendChild(this.#create_menu_card(menu_item));
+            this.#ref_menu_list.appendChild(this.#create_menu_card(menu_item));
         }
     }
 
@@ -103,6 +122,20 @@ const HTML_Handler = new class {
                     plusButton.classList.add("col-4", "fs-5", "fw-bold", "btn", "btn-success", "border-0", "rounded-0");
                     plusButton.appendChild(document.createTextNode("+"));
                     buttonRow.appendChild(plusButton);
+
+                    minusButton.addEventListener("click", function () {
+                        if (amountInput.value > 0) {
+                            amountInput.value--;
+                            Database.updateTotalItems();
+                        }
+                    });
+                    amountInput.addEventListener("input", function () {
+                        Database.updateTotalItems();
+                    });
+                    plusButton.addEventListener("click", function () {
+                        amountInput.value++;
+                        Database.updateTotalItems();
+                    });
                 }
                 cardBody.appendChild(buttonRow);
             }

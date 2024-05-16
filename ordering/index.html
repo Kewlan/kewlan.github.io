@@ -24,7 +24,7 @@
                 <!-- Top row -->
                 <h3 class="col-2 m-0">
                     <i class="bi bi-cart"></i>
-                    <span>2</span>
+                    <span id="total-items">0</span>
                 </h3>
                 <h3 class="col-8 m-0">Page Header</h3>
                 <div class="col-2">
@@ -73,14 +73,14 @@
             </div>
         </nav>
 
-        <main class="container overflow-auto">
+        <main class="container overflow-auto flex-fill">
             <div id="menu-list">
 
             </div>
         </main>
 
         <footer class="input-group z-1">
-            <input type="text" class="form-control rounded-0 border-0 border-top shadow-none"></input>
+            <input type="text" id="filter-input" class="form-control rounded-0 border-0 border-top shadow-none"></input>
             <label class="input-group-text rounded-0 border-0 border-top bg-body"><i class="bi bi-search"></i></label>
         </footer>
     </div>
