@@ -1,10 +1,17 @@
 'use strict';
 
+let counter = 0;
+const MENU_TYPE_PIZZA_KLASS_1 = counter++;
+const MENU_TYPE_PIZZA_KLASS_2 = counter++;
+const MENU_TYPE_PIZZA_KLASS_3 = counter++;
+const MENU_TYPE_SAUCES = counter++;
+const MENU_TYPE_DRINKS = counter++;
+
 const HTML_Handler = new class {
 
-    /** @type {HTMLDivElement} */
-    #ref_menu_list;
-    get ref_menu_list() { return this.#ref_menu_list; }
+    /** @type {HTMLDivElement[]} */
+    #ref_menu_lists = Array();
+    get ref_menu_lists() { return this.#ref_menu_lists; }
     /** @type {HTMLSpanElement} */
     #ref_total_items;
     get ref_total_items() { return this.#ref_total_items; }
@@ -17,7 +24,12 @@ const HTML_Handler = new class {
         console.log("HTML Handler init");
 
         // Get references
-        this.#ref_menu_list = document.getElementById("menu-list");
+        this.#ref_menu_lists.push(document.getElementById("menu-list-pk1"));
+        this.#ref_menu_lists.push(document.getElementById("menu-list-pk2"));
+        this.#ref_menu_lists.push(document.getElementById("menu-list-pk3"));
+        this.#ref_menu_lists.push(document.getElementById("menu-list-sauces"));
+        this.#ref_menu_lists.push(document.getElementById("menu-list-drinks"));
+
         this.#ref_total_items = document.getElementById("total-items");
         this.#ref_filter_input = document.getElementById("filter-input");
 
@@ -26,37 +38,46 @@ const HTML_Handler = new class {
 
         // Filter
         this.#ref_filter_input.addEventListener("input", () => {
-            for (let card of HTML_Handler.ref_menu_list.childNodes) {
-                if (card.nodeType != Node.ELEMENT_NODE) {
-                    continue;
+            this.#ref_menu_lists.forEach((menu_list, index) => {
+                let allHidden = true;
+                for (let card of menu_list.lastElementChild.childNodes) {
+                    if (card.nodeType != Node.ELEMENT_NODE) {
+                        continue;
+                    }
+
+                    let hideCard = card.querySelector("div>h5").textContent.toLowerCase().indexOf(this.#ref_filter_input.value.toLowerCase()) < 0;
+                    card.classList.toggle("d-none", hideCard);
+                    if (!hideCard) {
+                        allHidden = false;
+                    }
                 }
-                card.classList.toggle("d-none", card.querySelector("div>h5").textContent.toLowerCase().indexOf(this.#ref_filter_input.value.toLowerCase()) < 0);
-            }
+                menu_list.classList.toggle("d-none", allHidden);
+            });
         });
     }
 
     #fill_menu() {
         for (let menu_item of menu.pizza_class_1) {
             // console.log(menu_item);
-            this.#ref_menu_list.appendChild(this.#create_menu_card(menu_item));
+            this.#ref_menu_lists[MENU_TYPE_PIZZA_KLASS_1].lastElementChild.appendChild(this.#create_menu_card(menu_item));
         }
         for (let menu_item of menu.pizza_class_2) {
-            this.#ref_menu_list.appendChild(this.#create_menu_card(menu_item));
+            this.#ref_menu_lists[MENU_TYPE_PIZZA_KLASS_2].lastElementChild.appendChild(this.#create_menu_card(menu_item));
         }
         for (let menu_item of menu.pizza_class_3) {
-            this.#ref_menu_list.appendChild(this.#create_menu_card(menu_item));
+            this.#ref_menu_lists[MENU_TYPE_PIZZA_KLASS_3].lastElementChild.appendChild(this.#create_menu_card(menu_item));
         }
         for (let menu_item of menu.sauces) {
-            this.#ref_menu_list.appendChild(this.#create_menu_card(menu_item));
+            this.#ref_menu_lists[MENU_TYPE_SAUCES].lastElementChild.appendChild(this.#create_menu_card(menu_item));
         }
         for (let menu_item of menu.drinks) {
-            this.#ref_menu_list.appendChild(this.#create_menu_card(menu_item));
+            this.#ref_menu_lists[MENU_TYPE_DRINKS].lastElementChild.appendChild(this.#create_menu_card(menu_item));
         }
     }
 
     #create_menu_card(menu_item) {
         let card = document.createElement("div");
-        card.classList.add("card", "my-3", "overflow-hidden");
+        card.classList.add("card", "mb-2", "overflow-hidden", "menu-item-shadow");
         {
             let cardBody = document.createElement("div");
             cardBody.classList.add("card-body", "p-0", "pt-3");
@@ -123,18 +144,25 @@ const HTML_Handler = new class {
                     plusButton.appendChild(document.createTextNode("+"));
                     buttonRow.appendChild(plusButton);
 
+                    function toggleHighlight() {
+                        card.classList.toggle("highlight-outline", Number.parseInt(amountInput.value) > 0);
+                    }
+
                     minusButton.addEventListener("click", function () {
                         if (amountInput.value > 0) {
                             amountInput.value--;
                             Database.updateTotalItems();
                         }
+                        toggleHighlight();
                     });
                     amountInput.addEventListener("input", function () {
                         Database.updateTotalItems();
+                        toggleHighlight();
                     });
                     plusButton.addEventListener("click", function () {
                         amountInput.value++;
                         Database.updateTotalItems();
+                        toggleHighlight();
                     });
                 }
                 cardBody.appendChild(buttonRow);

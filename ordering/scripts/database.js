@@ -11,12 +11,15 @@ const Database = new class {
 
     updateTotalItems() {
         this.#total_items = 0;
-        for (let card of HTML_Handler.ref_menu_list.childNodes) {
-            if (card.nodeType != Node.ELEMENT_NODE) {
-                continue;
+
+        HTML_Handler.ref_menu_lists.forEach((menu_list, index) => {
+            for (let card of menu_list.lastElementChild.childNodes) {
+                if (card.nodeType != Node.ELEMENT_NODE) {
+                    continue;
+                }
+                this.#total_items += Number.parseInt(card.querySelector("input[type='number']").value);
             }
-            this.#total_items += Number.parseInt(card.querySelector("input[type='number']").value);
-        }
+        });
         HTML_Handler.ref_total_items.textContent = this.#total_items;
     }
 

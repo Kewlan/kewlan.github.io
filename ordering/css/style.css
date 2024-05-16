@@ -1,0 +1,36 @@
+:root {
+    --menu-list-bg-alpha: 0.06;
+}
+
+.highlight-outline {
+    /* box-shadow: 0 0 4px 2px black; */
+    outline: solid dodgerblue;
+}
+
+.menu-item-shadow {
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.25);
+}
+/* Pizza Klass 1 */
+#menu-list>:nth-child(1) {
+    background-color: rgba(0, 255, 0, var(--menu-list-bg-alpha));
+}
+
+/* Pizza Klass 2 */
+#menu-list>:nth-child(2) {
+    background-color: rgba(0, 153, 255, var(--menu-list-bg-alpha));
+}
+
+/* Pizza Klass 3 */
+#menu-list>:nth-child(3) {
+    background-color: rgba(255, 0, 0, var(--menu-list-bg-alpha));
+}
+
+/* Såser */
+#menu-list>:nth-child(4) {
+    background-color: rgba(255, 196, 0, var(--menu-list-bg-alpha));
+}
+
+/* Drinks */
+#menu-list>:nth-child(5) {
+    background-color: rgba(183, 0, 255, var(--menu-list-bg-alpha));
+}
