@@ -10,6 +10,15 @@
 .menu-item-shadow {
     box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.25);
 }
+
+#receipt-list {
+    list-style-type: none;
+}
+
+#receipt-list>:nth-child(2n+1) {
+    background-color: rgb(245, 245, 245);
+}
+
 /* Pizza Klass 1 */
 #menu-list>:nth-child(1) {
     background-color: rgba(0, 255, 0, var(--menu-list-bg-alpha));
