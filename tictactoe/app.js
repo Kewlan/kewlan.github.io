@@ -1,5 +1,7 @@
 'use strict';
 
+const TIMEOUT_DURATION = 5000;
+
 const express = require('express');
 let app = express();
 const cookieParser = require('cookie-parser');
@@ -18,6 +20,11 @@ app.use(cookieParser());
 http.listen(3000, function () {
     console.log("listen");
 });
+
+let x = '1';
+let y = '2';
+
+console.log(x == 1);
 
 app.get("/", function (request, response) {
 
@@ -195,6 +202,9 @@ io.on("connection", function (socket) {
             });
 
             globalObject.currentPlayer = 1;
+
+            clearTimeout(globalObject.timerId);
+            globalObject.timerId = setTimeout(timeout, TIMEOUT_DURATION);
         }
         else {
             console.log("Redan två spelare anslutna!");
@@ -203,7 +213,7 @@ io.on("connection", function (socket) {
         console.log("Kakorna saknas!")
     }
 
-    console.log(globalObject);
+    // console.log(globalObject);
 
     socket.on("newMove", function (data) {
         console.log("New move received", data);
@@ -227,6 +237,8 @@ io.on("connection", function (socket) {
             });
         }
 
+        clearTimeout(globalObject.timerId);
+
         const result = globalObject.checkForWinner();
 
         // Game ended
@@ -243,6 +255,27 @@ io.on("connection", function (socket) {
             return;
         }
 
+        // Game continued
+        globalObject.timerId = setTimeout(timeout, TIMEOUT_DURATION);
     });
 
 });
+
+function timeout() {
+    if (globalObject.currentPlayer == 1) {
+        io.to(globalObject.playerOneSocketId).emit("timeout");
+        io.to(globalObject.playerTwoSocketId).emit("yourMove", {
+            cellId: null,
+        });
+        globalObject.currentPlayer = 2;
+    }
+    else if (globalObject.currentPlayer == 2) {
+        io.to(globalObject.playerTwoSocketId).emit("timeout");
+        io.to(globalObject.playerOneSocketId).emit("yourMove", {
+            cellId: null,
+        });
+        globalObject.currentPlayer = 1;
+    }
+    clearTimeout(globalObject.timerId);
+    globalObject.timerId = setTimeout(timeout, TIMEOUT_DURATION);
+}

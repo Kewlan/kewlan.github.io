@@ -117,21 +117,24 @@ const MenuHandler = new class {
 
     #create_menu_card(menu_item) {
         let card = document.createElement("div");
-        card.classList.add("card", "mb-2", "overflow-hidden", "menu-item-shadow");
+        card.classList.add("card", "mb-3", "overflow-hidden", "menu-item-shadow");
         {
             let cardBody = document.createElement("div");
             cardBody.classList.add("card-body", "p-0", "pt-3");
             {
                 // Header
                 let headerRow = document.createElement("div");
-                headerRow.classList.add("d-flex", "justify-content-between", "px-3");
+                headerRow.classList.add("d-flex", "justify-content-between", "mb-1", "px-3");
                 {
-                    let item_name = document.createElement("h5");
-                    // item_name.classList.add("m-0");
+                    let item_name = document.createElement("span");
+                    item_name.classList.add("fs-4", "fw-semibold");
+                    item_name.setAttribute("data-name", "");
                     item_name.appendChild(document.createTextNode(menu_item.name));
                     headerRow.appendChild(item_name);
 
                     let price = document.createElement("span");
+                    price.classList.add("fs-4");
+                    price.setAttribute("data-price", "");
                     price.appendChild(document.createTextNode(menu_item.price + " kr"));
                     headerRow.appendChild(price);
                 }
@@ -140,7 +143,7 @@ const MenuHandler = new class {
                 // Contents
                 if (menu_item.contents) {
                     let ingredients = document.createElement("div");
-                    ingredients.classList.add("d-flex", "flex-wrap", "px-3");
+                    ingredients.classList.add("d-flex", "flex-wrap", "px-3", "fs-5");
                     {
                         for (let content of menu_item.contents) {
                             let ingredient = document.createElement("div");
@@ -167,21 +170,21 @@ const MenuHandler = new class {
                 buttonRow.classList.add("row", "m-0", "mt-2");
                 {
                     let minusButton = document.createElement("button");
-                    minusButton.classList.add("col-4", "fs-5", "fw-bold", "btn", "btn-danger", "border-0", "rounded-0");
-                    minusButton.appendChild(document.createTextNode("-"));
+                    minusButton.classList.add("col-4", "p-0", "fs-1", "fw-bold", "bi", "bi-dash", "fw-bold", "btn", "btn-danger", "border-0", "rounded-0");
+                    //minusButton.appendChild(document.createTextNode("-"));
                     buttonRow.appendChild(minusButton);
 
                     /** @type {HTMLInputElement} */
                     let amountInput = document.createElement("input");
-                    amountInput.classList.add("col-4", "border-0", "border-top", "text-center");
+                    amountInput.classList.add("col-4", "border-0", "border-top", "text-center", "fs-5");
                     amountInput.setAttribute("type", "number");
                     amountInput.setAttribute("value", "0");
                     amountInput.min = 0;
                     buttonRow.appendChild(amountInput);
 
                     let plusButton = document.createElement("button");
-                    plusButton.classList.add("col-4", "fs-5", "fw-bold", "btn", "btn-success", "border-0", "rounded-0");
-                    plusButton.appendChild(document.createTextNode("+"));
+                    plusButton.classList.add("col-4", "p-0", "fs-1", "fw-bold", "bi", "bi-plus", "fw-bold", "btn", "btn-success", "border-0", "rounded-0");
+                    //plusButton.appendChild(document.createTextNode("+"));
                     buttonRow.appendChild(plusButton);
 
                     function toggleHighlight() {
@@ -229,7 +232,7 @@ const MenuHandler = new class {
                     continue;
                 }
 
-                let hideCard = card.querySelector("div>h5").textContent.toLowerCase().indexOf(this.#ref_filter_input.value.toLowerCase()) < 0;
+                let hideCard = card.querySelector("[data-name]").textContent.toLowerCase().indexOf(this.#ref_filter_input.value.toLowerCase()) < 0;
                 card.classList.toggle("d-none", hideCard);
                 if (!hideCard) {
                     anyFound = true;
@@ -278,8 +281,8 @@ const MenuHandler = new class {
                     continue;
                 }
 
-                let name = card.querySelector("div>h5").textContent;
-                let price = Number.parseInt(card.querySelector("div>span").textContent);
+                let name = card.querySelector("[data-name]").textContent;
+                let price = Number.parseInt(card.querySelector("[data-price]").textContent);
                 let amount = Number.parseInt(card.querySelector("input[type='number']").value);
                 if (Number.isNaN(amount)) {
                     amount = 0;

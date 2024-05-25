@@ -17,39 +17,40 @@
 </head>
 
 <body>
-    <div class="d-flex flex-column" style="height: 100vh">
+    <div class="d-flex flex-column" style="height: 100vh; height: 100dvh;">
         <nav class="navbar bg-body-tertiary">
             <div class="container">
                 <!-- Top row -->
-                <h3 class="m-0">
+                <span class="m-0 fs-3 fw-semibold">
                     <span>Order </span>
                     <span id="order-num">1</span>
-                </h3>
-                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                </span>
+                <button class="navbar-toggler py-2" type="button" data-bs-toggle="offcanvas"
                     data-bs-target="#receiptOffcanvas" aria-controls="receiptOffcanvas" aria-label="Toggle navigation">
-                    <h3 class="m-0">
+                    <span class="m-0 fs-3 fw-semibold">
                         <i class="bi bi-cart"></i>
                         <span id="total-items">0</span>
-                    </h3>
+                    </span>
                 </button>
                 <!-- Offcanvas -->
                 <div class="offcanvas offcanvas-end" tabindex="-1" id="receiptOffcanvas"
                     aria-labelledby="receiptOffcanvasLabel">
                     <div class="offcanvas-header">
-                        <h5 class="offcanvas-title" id="receiptOffcanvasLabel">Kvitto</h5>
+                        <span class="offcanvas-title fs-4" id="receiptOffcanvasLabel">Kvitto</span>
                         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                     </div>
                     <div class="offcanvas-body">
                         <div id="receipt-orders">
-                            <ul id="receipt-list" class="m-0 p-0">
+                            <ul id="receipt-list" class="m-0 mb-3 p-0 fs-5">
                             </ul>
-                            <div class="d-flex justify-content-between m-2 fs-5 fw-semibold">
+                            <div class="d-flex justify-content-between m-2 fs-4 fw-semibold">
                                 <span>Total kostnad:</span>
                                 <span id="total-cost">0 kr</span>
                             </div>
-                            <div class="form-floating mb-2">
-                                <textarea class="form-control" id="textarea-notes" style="height: 80px;"></textarea>
-                                <label for="textarea-notes">Notering</label>
+                            <div>
+                                <label for="textarea-notes" class="ms-2 fs-5">Noteringar:</label>
+                                <textarea class="form-control mb-2 fs-5" id="textarea-notes"
+                                    style="height: 80px;"></textarea>
                             </div>
                             <div class="row g-1">
                                 <div class="col-4">
@@ -74,23 +75,23 @@
         <main class="overflow-auto flex-fill">
             <div id="menu-list">
                 <div id="menu-list-pk1" class="p-3">
-                    <h4 class="text-center m-2">Pizza Klass 1</h4>
+                    <div class="text-center m-2 fs-3 fw-semibold mx-auto">Pizza Klass 1</div>
                     <div></div>
                 </div>
                 <div id="menu-list-pk2" class="p-3">
-                    <h4 class="text-center m-2">Pizza Klass 2</h4>
+                    <div class="text-center m-2 fs-3 fw-semibold mx-auto">Pizza Klass 2</div>
                     <div></div>
                 </div>
                 <div id="menu-list-pk3" class="p-3">
-                    <h4 class="text-center m-2">Pizza Klass 3</h4>
+                    <div class="text-center m-2 fs-3 fw-semibold mx-auto">Pizza Klass 3</div>
                     <div></div>
                 </div>
                 <div id="menu-list-sauces" class="p-3">
-                    <h4 class="text-center m-2">Såser</h4>
+                    <div class="text-center m-2 fs-3 fw-semibold mx-auto">Såser</div>
                     <div></div>
                 </div>
                 <div id="menu-list-drinks" class="p-3">
-                    <h4 class="text-center m-2">Drycker</h4>
+                    <div class="text-center m-2 fs-3 fw-semibold mx-auto">Drycker</div>
                     <div></div>
                 </div>
             </div>
@@ -103,9 +104,9 @@
         <!-- Filter -->
         <footer class="input-group z-1">
             <input type="text" id="filter-input" placeholder="Filtrera"
-                class="form-control rounded-0 border-0 border-top shadow-none"></input>
+                class="form-control rounded-0 border-0 border-top shadow-none fs-5"></input>
             <label class="input-group-text rounded-0 border-0 border-top bg-body">
-                <i id="filter-icon" class="bi bi-search"></i>
+                <i id="filter-icon" class="bi bi-search fs-5"></i>
             </label>
         </footer>
     </div>
